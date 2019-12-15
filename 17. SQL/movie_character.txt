@@ -1,0 +1,18 @@
+Movie Character
+Write a SQL Query to find the movie_title and name of director (first and last names combined) who directed a movie that casted a role as ‘SeanMaguire’.
+
+Output Schema:
+
+director_name,movie_title
+NOTE:
+
+Output column name has to match the given output schema.
+Any name is the concatenation(without any delimiter) of first and last name if present
+(E.g. if director_first_name is ‘Alfred’ and director_last_name is ‘Hitchcock’ then director_name is ‘AlfredHitchcock’)
+
+
+
+select concat(d.director_first_name,d.director_last_name) as director_name, m.movie_title from
+movies m, directors d, movies_directors md, movies_cast mc where
+mc.movie_id = m.movie_id and m.movie_id = md.movie_id and md.director_id = d.director_id and 
+mc.role = 'SeanMaguire'
